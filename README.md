@@ -1,162 +1,123 @@
 # Dev Stack
+Dev Stack is an interactive React application for exploring modern development technologies and building a personalized technology stack.
 
-A modern, interactive web application to discover, explore, and build your personalized development technology stack. Perfect for developers of all levels who want to master the tools that power modern software development.
+Repository: [github.com/SabikunEthika/Dev_Stack_PH](https://github.com/SabikunEthika/Dev_Stack_PH)
 
 ## Description
 
-Dev Stack is a beautifully designed React application that allows users to:
-- Browse a curated collection of technologies across different categories
-- View detailed information (rating, difficulty, badges)
-- Add technologies to a personalized stack
-- Manage selections with an intuitive sidebar interface
-- Receive real-time toast notifications for actions
-
-Whether you're a beginner exploring technologies or an advanced developer refining your toolkit, Dev Stack helps you build your ideal tech ecosystem.
+The application presents a curated set of frontend, backend, database, language, styling, and DevOps technologies. Each technology includes its category, rating, difficulty level, badge, icon, and a short description. Users can select technologies, review their stack, remove individual choices, or clear the full selection.
 
 ## Technologies Used
 
-- **Frontend Framework**: React 18 with TypeScript
-- **Styling**: Tailwind CSS
-- **Build Tool**: Vite
-- **Notifications**: React-Toastify
-- **Icons**: Lucide React
-- **Version Control**: Git & GitHub
+- React 19 with TypeScript
+- Vite
+- Tailwind CSS
+- DaisyUI
+- React-Toastify
+- Lucide React
+- JSON data
+- Git and GitHub
 
-## Key Features
+## Features
 
-1. **Responsive Design** - Mobile-first approach, fully responsive across all devices
-2. **Beautiful Technology Cards** - Interactive cards with badges, ratings, and difficulty levels
-3. **Smart Stack Management** - Add/remove technologies with duplicate prevention
-4. **Real-time Notifications** - Toast alerts for all user actions
-5. **Loading States** - Smooth spinner while loading data
-6. **Gradient Branding** - Consistent orange-to-purple gradient throughout
-
-## Design Preview
-
-[Figma Link: Your Design](https://www.figma.com/design/hRyXxbUvRW7bLDLqTRTLCb/DevStack)
+1. **Technology Explorer**: Browse responsive technology cards with useful details and visual badges.
+2. **Personal Stack Builder**: Add technologies, prevent duplicates, remove individual items, or remove the entire stack.
+3. **Helpful User Feedback**: See loading states and toast notifications for successful, duplicate, and removal actions.
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js v16+
-- npm or yarn
+
+- Node.js 16 or newer
+- npm
 
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/Mushfiq-Srijon/a-05.git
-cd a-05
-cd dev-stack
-
-# Install dependencies
+git clone https://github.com/SabikunEthika/Dev_Stack_PH.git
+cd Dev_Stack_PH/dev-stack
 npm install
-
-# Start development server
 npm run dev
+```
 
-# Build for production
+Open `http://localhost:5173` in your browser.
+
+### Production Build
+
+```bash
 npm run build
 ```
 
-Visit `http://localhost:5173` in your browser.
+The project can be deployed to Netlify, Vercel, Cloudflare Pages, or another static hosting provider.
 
 ## Project Structure
 
 ```text
-src/
-├── components/
-│   ├── Navbar.tsx              # Navigation bar
-│   ├── Hero.tsx                # Hero section
-│   ├── TechnologyCard.tsx      # Tech card component
-│   ├── TechnologiesGrid.tsx    # Grid layout
-│   ├── YourStack.tsx           # Sidebar manager
-│   └── Footer.tsx              # Footer
-├── data/
-│   └── technologies.json       # Technology data
-├── types/
-│   └── index.ts                # TypeScript types
-├── App.tsx                     # Main app
-└── index.css                   # Global styles
+dev-stack/
+└── src/
+    ├── components/
+    │   ├── sections/
+    │   │   └── TechnologyExplorer.tsx
+    │   ├── ui/
+    │   │   └── LoadingSpinner.tsx
+    │   ├── Footer.tsx
+    │   ├── Hero.tsx
+    │   ├── Navbar.tsx
+    │   ├── TechnologiesGrid.tsx
+    │   ├── TechnologyCard.tsx
+    │   └── YourStack.tsx
+    ├── data/
+    │   └── technologies.json
+    ├── hooks/
+    │   └── useTechnologies.ts
+    ├── utils/
+    │   └── technologyStyles.ts
+    ├── types/
+    │   └── index.ts
+    ├── App.tsx
+    ├── App.css
+    ├── index.css
+    └── main.tsx
 ```
 
-## Color Scheme
-
-- **Accent**: `#FF006E` (Pink/Magenta)
-- **Orange CTA**: `#FF6B35`
-- **Dark Buttons**: `#1a1a1a`
-- **Gradient**: Orange → Pink → Purple
-
-## 🔧 How It Works
-
-### Adding Technologies
-Click "Add to Stack" on any card. The button becomes disabled with a checkmark once added. Duplicate attempts show a warning toast.
-
-### Your Stack Sidebar
-Shows all selected technologies with a count. Click ✕ to remove individual items or "Remove All" to clear everything.
-
-### Responsive Behavior
-- **Mobile**: 1-column grid with compact sidebar
-- **Tablet**: 2-column grid
-- **Desktop**: 3-column grid with sticky sidebar
-
-## Deployment
-
-### Vercel (Recommended)
-```bash
-npm run build
-# Connect to Vercel and auto-deploy
-```
-
-## React Questions & Answers
+## React Questions and Answers
 
 ### 1. What is JSX, and why is it used in React?
 
-JSX is a syntax extension that lets you write HTML-like code in JavaScript. It makes components more readable by letting you describe UI structure directly. Under the hood, JSX compiles to JavaScript function calls (`React.createElement()`). We use it because it's intuitive and mirrors the actual UI layout you're building.
+JSX lets us write HTML-like UI inside JavaScript or TypeScript. It makes React components easier to read and organize.
 
 ### 2. What is the difference between props and state?
 
-**Props** are read-only values passed from parent to child (like function parameters). They flow one direction.
+Props are values passed from a parent component to a child. State is data managed inside a component that can change and update the UI.
 
-**State** is internal data managed within a component that can change and trigger re-renders. In this project, `selectedStack` is state in App, while `tech` passed to TechnologyCard is a prop.
+### 3. What does the `useState` hook do, and where did you use it in this project?
 
-### 3. What does the useState hook do, and where did you use it in this project?
+`useState` stores changing data in a component. This project uses it for the selected stack, loaded technologies, loading state, and mobile navigation state.
 
-`useState` adds state to functional components, returning `[value, setValue]`. In this project:
-- `selectedStack` - tracks added technologies
-- `technologies` & `loading` - manages data fetching
-- `isOpen` - could be used for mobile menu toggle
+### 4. What does the `useEffect` hook do, and why did you need it to load the JSON data?
 
-### 4. What does the useEffect hook do, and why did you need it to load the JSON data?
+`useEffect` runs side effects after rendering. It loads the technology data once and updates the loading state when the data is ready.
 
-`useEffect` runs side effects (fetching, subscriptions, timers) after render. Without it, fetching would run on every render, causing infinite loops. The empty `[]` dependency ensures it runs only once on mount.
+### 5. Why does every item in a `.map()` list need a unique `key` prop?
 
-### 5. Why does every item in a .map() list need a unique key prop?
+A unique key helps React identify each list item and update only the item that changed. This project uses each technology's `id` as its key.
 
-Keys help React identify which items changed. Without unique keys, React may reuse DOM elements incorrectly, causing bugs and performance issues. We use `key={tech.id}` because each technology has a unique ID.
+### 6. What is conditional rendering? Show one place you used it.
 
-### 6. What is conditional rendering? Show one place you used it in this project.
+Conditional rendering displays different UI depending on a condition. The stack shows an empty message when no technology is selected:
 
-Conditional rendering shows/hides components based on conditions. In YourStack:
-
-```typescript
+```tsx
 {stack.length === 0 ? (
-  <div>Your stack is empty</div>
+  <p>Your stack is empty</p>
 ) : (
-  <div>Display stack items</div>
+  <div>Display selected technologies</div>
 )}
 ```
 
-### 7. How do you pass data from a parent to child, and how does a child send data back?
+### 7. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
 
-**Parent to Child**: Pass as props
-```typescript
-<TechnologiesGrid selectedStack={selectedStack} />
+The parent passes data and callback functions as props. The child calls the callback when the user interacts with it, sending the selected technology back to the parent.
+
+```tsx
+<TechnologiesGrid selectedStack={selectedStack} onAdd={handleAddToStack} />
 ```
-
-**Child to Parent**: Pass callback functions as props
-```typescript
-<TechnologyCard onAdd={() => onAdd(tech)} />
-```
-
-The child calls `onAdd(tech)`, sending data back to the parent.
